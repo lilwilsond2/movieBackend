@@ -14,35 +14,28 @@ paths:
       tags:
       - "movie"
       summary: "Return a list of all movies"
+      description: "can control direction of sort by adding {propertyName}.dir as a query variable and using `asc` or `desc`"
       operationId: "getMovies"
       produces:
       - "application/json"
       parameters:
-        - in: "query"
-          name: "sort"
-          description: "field to sort by"
-          type: "string"
-          enum:
-            - "title"
-            - "format"
-            - "length"
-            - "releaseYear"
-            - "rating"
-        - in: "query"
-          name: "order"
-          description: "sort order"
-          type: "string"
-          default: "asc"
-          enum:
-            - "asc"
-            - "desc"
+      - in: "query"
+        name: "sort"
+        description: "field to sort by"
+        type: "string"
+        enum:
+        - "title"
+        - "format"
+        - "length"
+        - "releaseYear"
+        - "rating"
       responses:
         200:
-            description: "successful operation"
-            schema:
-              type: "array"
-              items:
-                $ref: "#/definitions/Movie"
+          description: "successful operation"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/Movie"
     post:
       tags:
       - "movie"
@@ -117,7 +110,7 @@ securityDefinitions:
   movie_auth:
     type: "apiKey"
     name: "Authorization"
-    in: header"
+    in: "header"
     x-amazon-apigateway-authtype: "awsSigv4"
 definitions:
   Movie:
