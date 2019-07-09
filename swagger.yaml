@@ -82,30 +82,61 @@ paths:
           description: "Validation exception"
       security:
       - movie_auth: []
+  /movie/{id}:
+    get:
+      tags:
+        - "movie"
+      summary: "Return a info from a single movie"
+      operationId: "getMovie"
+      produces:
+        - "application/json"
+      parameters:
+        - in: "path"
+          name: "id"
+          description: "id of movie object that needs to be retrieved"
+          required: true
+          type: "string"
+      responses:
+        200:
+          description: "successful operation"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/Movie"
     delete:
       tags:
-      - "movie"
+        - "movie"
       summary: "Delete an existing movie"
       operationId: "deleteMovie"
       produces:
-      - "application/json"
+        - "application/json"
       parameters:
-      - in: "query"
-        name: "id"
-        description: "id of movie object that needs to be deleted"
-        required: true
-        type: "string"
+        - in: "path"
+          name: "id"
+          description: "id of movie object that needs to be deleted"
+          required: true
+          type: "string"
       responses:
         200:
           description: "Ok"
-        400:
-          description: "Invalid ID supplied"
-        404:
-          description: "Movie not found"
-        405:
-          description: "Validation exception"
       security:
-      - movie_auth: []
+        - movie_auth: []
+  /movie/{id}/ombd:
+    get:
+      tags:
+        - "movie"
+      summary: "Return a ombd info for a movie"
+      operationId: "getOmbdMovieInfo"
+      produces:
+        - "application/json"
+      responses:
+        200:
+          description: "successful operation"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/Movie"
+
 securityDefinitions:
   movie_auth:
     type: "apiKey"
