@@ -143,9 +143,8 @@ paths:
 securityDefinitions:
   movie_auth:
     type: "apiKey"
-    name: "Authorization"
+    name: "x-api-key"
     in: "header"
-    x-amazon-apigateway-authtype: "awsSigv4"
 definitions:
   Movie:
     type: "object"
