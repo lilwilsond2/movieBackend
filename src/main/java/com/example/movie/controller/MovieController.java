@@ -21,10 +21,10 @@ public class MovieController {
 
     @GetMapping(path = "movies/{id}/omdb")
     public String getExpandedInfo(@PathVariable String id) {
-        return getJsonFromOmbd(id);
+        return getJsonFromOmdb(id);
     }
 
-    private String getJsonFromOmbd(String id) {
+    private String getJsonFromOmdb(String id) {
         RestTemplate restTemplate = new RestTemplate();
         return restTemplate.getForObject(omdbUrl + "?i=" + id + "&apikey=" + omdbKey, String.class);
     }

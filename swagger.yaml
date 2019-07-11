@@ -113,12 +113,12 @@ paths:
           type: "string"
       security:
         - movie_auth: []
-  /movie/{id}/ombd:
+  /movie/{id}/omdb:
     get:
       tags:
         - "movie"
-      summary: "Return a ombd info for a movie"
-      operationId: "getOmbdMovieInfo"
+      summary: "Return a omdb info for a movie"
+      operationId: "getOmdbMovieInfo"
       produces:
         - "application/json"
       responses:
