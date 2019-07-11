@@ -14,7 +14,7 @@ paths:
       tags:
         - "movie"
       summary: "Return a list of all movies"
-      description: "can control direction of sort by adding {propertyName}.dir as a query variable and using `asc` or `desc`"
+      description: "can control direction of sort by appending a comma to the property plus either `asc` or `desc`"
       operationId: "getMovies"
       produces:
         - "application/json"
