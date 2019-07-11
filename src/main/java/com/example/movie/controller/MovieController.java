@@ -26,8 +26,8 @@ public class MovieController {
         return ResponseEntity.ok(getJsonFromOmdb(id));
     }
 
-    private String getJsonFromOmdb(String id) {
+    private Object getJsonFromOmdb(String id) {
         RestTemplate restTemplate = new RestTemplate();
-        return restTemplate.getForObject(omdbUrl + "?i=" + id + "&apikey=" + omdbKey, String.class);
+        return restTemplate.getForObject(omdbUrl + "?i=" + id + "&apikey=" + omdbKey, Object.class);
     }
 }
