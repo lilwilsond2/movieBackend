@@ -6,29 +6,29 @@ info:
 host: "[HOST_ADDRESS]"
 basePath: "/api"
 schemes:
-- "https"
-- "http"
+  - "https"
+  - "http"
 paths:
   /movie:
     get:
       tags:
-      - "movie"
+        - "movie"
       summary: "Return a list of all movies"
       description: "can control direction of sort by adding {propertyName}.dir as a query variable and using `asc` or `desc`"
       operationId: "getMovies"
       produces:
-      - "application/json"
+        - "application/json"
       parameters:
-      - in: "query"
-        name: "sort"
-        description: "field to sort by"
-        type: "string"
-        enum:
-        - "title"
-        - "format"
-        - "length"
-        - "releaseYear"
-        - "rating"
+        - in: "query"
+          name: "sort"
+          description: "field to sort by"
+          type: "string"
+          enum:
+            - "title"
+            - "format"
+            - "length"
+            - "releaseYear"
+            - "rating"
       responses:
         200:
           description: "successful operation"
@@ -38,22 +38,25 @@ paths:
               $ref: "#/definitions/Movie"
     post:
       tags:
-      - "movie"
+        - "movie"
       summary: "Add a new movie"
       operationId: "addMovie"
       consumes:
-      - "application/json"
+        - "application/json"
       produces:
-      - "application/json"
+        - "application/json"
       parameters:
-      - in: "body"
-        name: "body"
-        description: "Movie object that needs to be added"
-        required: true
-        schema:
-          $ref: "#/definitions/Movie"
+        - in: "body"
+          name: "body"
+          description: "Movie object that needs to be added"
+          required: true
+          schema:
+            $ref: "#/definitions/Movie"
+      responses:
+        200:
+          description: "successful operation"
       security:
-      - movie_auth: []
+        - movie_auth: []
   /movie/{id}:
     get:
       tags:
@@ -86,16 +89,19 @@ paths:
         - "application/json"
       parameters:
         - in: "path"
-              name: "id"
-              description: "id of movie object that needs to be updated"
-              required: true
-              type: "string"
+          name: "id"
+          description: "id of movie object that needs to be updated"
+          required: true
+          type: "string"
         - in: "body"
           name: "body"
           description: "Movie object that needs to be updated"
           required: true
           schema:
             $ref: "#/definitions/Movie"
+      responses:
+        200:
+          description: "successful operation"
       security:
         - movie_auth: []
     delete:
@@ -111,6 +117,9 @@ paths:
           description: "id of movie object that needs to be deleted"
           required: true
           type: "string"
+      responses:
+        200:
+          description: "successful operation"
       security:
         - movie_auth: []
   /movie/{id}/omdb:
@@ -121,13 +130,15 @@ paths:
       operationId: "getOmdbMovieInfo"
       produces:
         - "application/json"
+      parameters:
+        - in: "path"
+          name: "id"
+          description: "id of movie object that needs to be retrieved"
+          required: true
+          type: "string"
       responses:
         200:
           description: "successful operation"
-          schema:
-            type: "array"
-            items:
-              $ref: "#/definitions/Movie"
 
 securityDefinitions:
   movie_auth:
@@ -139,12 +150,12 @@ definitions:
   Movie:
     type: "object"
     required:
-    - "id"
-    - "title"
-    - "format"
-    - "length"
-    - "releaseYear"
-    - "rating"
+      - "id"
+      - "title"
+      - "format"
+      - "length"
+      - "releaseYear"
+      - "rating"
     properties:
       id:
         type: "string"
@@ -155,9 +166,9 @@ definitions:
       format:
         type: "string"
         enum:
-        - "VHS"
-        - "DVD"
-        - "Streaming"
+          - "VHS"
+          - "DVD"
+          - "Streaming"
       length:
         type: "integer"
         description: "length of movie in seconds"
