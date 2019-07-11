@@ -3,13 +3,13 @@ info:
   description: "This is mostly nothing"
   version: "1.0.0"
   title: "Sample movie thingy"
-host: "[HOST_ADDRESS]"
+host: "ec2-18-206-253-117.compute-1.amazonaws.com:5000"
 basePath: "/api"
 schemes:
   - "https"
   - "http"
 paths:
-  /movie:
+  /movies:
     get:
       tags:
         - "movie"
@@ -57,7 +57,7 @@ paths:
           description: "successful operation"
       security:
         - movie_auth: []
-  /movie/{id}:
+  /movies/{id}:
     get:
       tags:
         - "movie"
@@ -122,7 +122,7 @@ paths:
           description: "successful operation"
       security:
         - movie_auth: []
-  /movie/{id}/omdb:
+  /movies/{id}/omdb:
     get:
       tags:
         - "movie"
