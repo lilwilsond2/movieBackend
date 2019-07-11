@@ -1,12 +1,14 @@
 package com.example.movie.controller;
 
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.data.rest.webmvc.RepositoryRestController;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.client.RestTemplate;
 
-@RestController
+@RepositoryRestController
 public class MovieController {
 
     private final String omdbUrl;
@@ -20,8 +22,8 @@ public class MovieController {
     }
 
     @GetMapping(path = "movies/{id}/omdb")
-    public String getExpandedInfo(@PathVariable String id) {
-        return getJsonFromOmdb(id);
+    public @ResponseBody ResponseEntity getExpandedInfo(@PathVariable String id) {
+        return ResponseEntity.ok(getJsonFromOmdb(id));
     }
 
     private String getJsonFromOmdb(String id) {
