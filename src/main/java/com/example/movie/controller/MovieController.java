@@ -19,7 +19,7 @@ public class MovieController {
         this.omdbKey = omdbKey;
     }
 
-    @GetMapping(path = "movies/{id}/ombd")
+    @GetMapping(path = "movies/{id}/omdb")
     public String getExpandedInfo(@PathVariable String id) {
         return getJsonFromOmbd(id);
     }
